@@ -57,9 +57,9 @@ class Playlist:
 # Searching for songs by artist
 
 # Sample Output:
-Playlist: My Playlist 1
-1. Song 1 - Artist 1
-2. Song 2 - Artist 2
+# Playlist: My Playlist 1
+# 1. Song 1 - Artist 1
+# 2. Song 2 - Artist 2
 
-Songs by Artist 1:
-Song 1 - Album 1
+# Songs by Artist 1:
+# Song 1 - Album 1

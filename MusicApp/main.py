@@ -43,41 +43,99 @@ class Playlist:
         for i, song in enumerate(self.songs, start=1):
             print(f"{i}. {song.title} by {song.artist}")
 
+    def search_playlist(self, query):
+        results = []
+        for song in self.songs:
+            if query.lower() in song.title.lower() or query.lower() in song.artist.lower():
+                results.append(song)
+        return results
+
 # Create a music library.
 library = MusicLibrary()
 
-# Add some songs to the music library.
-library.add_song(Song("Bohemian Rhapsody", "Queen", "A Night at the Opera", "Rock", 360))
-library.add_song(Song("Stairway to Heaven", "Led Zeppelin", "Led Zeppelin IV", "Rock", 480))
-library.add_song(Song("Thriller", "Michael Jackson", "Thriller", "Pop", 360))
-library.add_song(Song("Imagine", "John Lennon", "Imagine", "Rock", 240))
+# Add songs to the music library.
+library.add_song(Song("W/X/Y", "Tani Yuuki", "W/X/Y", "J-Pop", "4:38"))
+library.add_song(Song("HAREHAREYA", "UniteUp!", "HAREHAREYA", "J-Pop", "3:28"))
+library.add_song(Song("FLY HIGH!!", "BURNOUT SYNDROMES", "HAIKYUU", "J-Pop", "4:04"))
+library.add_song(Song("Prologue", "YOASOBI", "Prologue", "J-Pop", "4:35"))
+library.add_song(Song("Ghost Rule", "Yorushika", "That's Why I Gave Up on Music", "J-Pop", "4:15"))
+library.add_song(Song("MANIAC", "Stray Kids", "Oddinary", "K-Pop", "3:03"))
+library.add_song(Song("Hakuna Matata", "Yorushika", "Plagiarism", "J-Pop", "4:01"))
+library.add_song(Song("365 Nichi no Love Letter", "AKB48", "Tsugi no Ashiato", "J-Pop", "4:43"))
+library.add_song(Song("Koi wa Cristal", "CHiCO with HoneyWorks", "Kokuhaku Yokou Renshuu", "J-Pop", "4:12"))
+library.add_song(Song("FAKE", "DISH//", "Junkfood Junction", "J-Pop Rock", "3:46"))
+library.add_song(Song("Walk on memories", "EXO", "The War", "K-Pop", "3:52"))
+library.add_song(Song("Overdose", "EXO", "Overdose", "K-Pop", "3:38"))
+library.add_song(Song("Paper Cuts", "EXO-CBX", "EXO-CBX “MAGICAL CIRCUS” 2019", "K-Pop", "3:45"))
+library.add_song(Song("April, and a Flower", "Chen", "April, and a Flower", "K-Pop Ballad", "3:35"))
+library.add_song(Song("BOSS", "NCT", "BOSS", "K-Pop", "3:31"))
+library.add_song(Song("Campfire", "SEVENTEEN", "Ode to you", "K-Pop R&B", "3:27"))
+library.add_song(Song("7PM", "BSS", "7PM", "K-Pop Hip-Hop", "3:15"))
+library.add_song(Song("Gurenge", "LiSA", "Gurenge", "J-Pop Anime", "3:54"))
+library.add_song(Song("Imagination", "SPYAIR", "Just Do It", "J-Pop Anime Rock", "4:13"))
+library.add_song(Song("Drowning", "WOODZ", "OO-LI", "K-Pop", "4:05"))
+library.add_song(Song("Renegades", "ONE OK ROCK", "Renegades", "J-Pop", "4:05"))
+
+# Get songs by artist
+artist = "Yorushika"
+songs_by_artist = library.get_songs_by_artist(artist)
+print("-------------------------------------------")
+print(f"{artist} songs:")
+for song in songs_by_artist:
+    print(f"{song.title} by {song.artist}")
+print("-------------------------------------------")
 
 # Create a playlist.
 playlist = Playlist()
 
 # Add some songs to the playlist.
-playlist.add_song(library.get_songs_by_title("Imagine")[0])
-playlist.add_song(library.get_songs_by_title("Thriller")[0])
-playlist.add_song(library.get_songs_by_title("Bohemian Rhapsody")[0])
+playlist.add_song(library.get_songs_by_title("FLY HIGH!!")[0])
+playlist.add_song(library.get_songs_by_title("Renegades")[0])
+playlist.add_song(library.get_songs_by_title("Campfire")[0])
+playlist.add_song(library.get_songs_by_title("W/X/Y")[0])
+playlist.add_song(library.get_songs_by_title("Prologue")[0])
+playlist.add_song(library.get_songs_by_title("MANIAC")[0])
+playlist.add_song(library.get_songs_by_title("7PM")[0])
+playlist.add_song(library.get_songs_by_title("Overdose")[0])
+playlist.add_song(library.get_songs_by_title("BOSS")[0])
+playlist.add_song(library.get_songs_by_title("W/X/Y")[0])
+playlist.add_song(library.get_songs_by_title("Paper Cuts")[0])
+playlist.add_song(library.get_songs_by_title("Walk on memories")[0])
+playlist.add_song(library.get_songs_by_title("HAREHAREYA")[0])
+playlist.add_song(library.get_songs_by_title("Hakuna Matata")[0])
+playlist.remove_song(library.get_songs_by_title("Paper Cuts")[0])
 
-# Display the playlist.
-# playlist.display_playlist()
-
-# Remove a song from the playlist.
-playlist.remove_song(library.get_songs_by_title("Thriller")[0])
-
-# Display the playlist.
-# playlist.display_playlist()
-
-# Reorder the songs in the playlist.
-playlist.reorder_songs([library.get_songs_by_title("Bohemian Rhapsody")[0],
-                         library.get_songs_by_title("Imagine")[0]])
-
-# Display the playlist.
+# Display the playlist.​​​​​​​​​​​​
+print("         ~~~~​​​​​​​​ ​​​​My Playlist  ~~~~         ")
+print("-------------------------------------------")
 playlist.display_playlist()
+print("-------------------------------------------")
 
-# Display the songs by Artist 1.
-# artist_songs = playlist.get_songs_by_artist("Artist 1")
-# print("\nSongs by Artist 1:")
-# for song in artist_songs:
-#     print(f"{song.title} - {song.album}")
+# Search for a song or artist in the playlist.
+# Get user input
+query = input("    Search a song or artist name: ")
+
+
+# Search for a song or artist in the playlist.
+results = playlist.search_playlist(query)
+
+# Display search results
+if results:
+    print()
+    print("Search results:"'\n')
+    for result in results:
+        print(f"         {result.title} by {result.artist}""\n")
+else:
+    print("\n")
+    print("          No results found.""\n")
+
+
+# Main Requirement:
+# Create song example =
+# Create a music library =
+# Add songs to the music library =
+# Get songs by artist = 
+# Create playlists =
+# Add songs to playlists = 
+# Display playlists
+# Searching for songs by artist
